@@ -1,8 +1,0 @@
-1. social acount login.
-2. flash massage showing afetr every successful action.
-3. user profile creation.
-4. search functionality.
-5. email verified account
-## inportant note about image file
-whenever we wanna upload image file we must include enctype="multipart/form-data" in the form tag
-of html file. sometime a minor concept can create a huge problem.
