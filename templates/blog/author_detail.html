@@ -1,0 +1,21 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+
+    <title> {{ author.name }} </title>
+    <meta name="keywords" content="{{ author.profession }}">
+    <meta name="description" content="{{ author.bio|slice:':65' }}...">
+
+{% endblock %}
+{% block content %}
+<img src="{{ author.avater.url }}"  style="height: 50px; ;width: 50px;">
+ <h1>{{ author.name }}</h1>
+ <h4>{{ author.profession }}</h>
+ <h5> Born in : {{ author.date_of_birth }}</h5>
+ <p>{{ author.bio }}</p>
+ <div class="row" id="blogitem">
+    {% for blog in author.blog_set.all %}
+      {% include 'blog/blog_card.html' %}
+    {% endfor %}
+</div> 
+{% endblock %}

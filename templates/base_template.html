@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Coding Blog</title>
+  <meta name="keywords" content="coding, programming, seo, job interview, codingblog ">
+  <meta name="description" content="one of the bast coding website " >
+  {% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" 
+  href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  {% load socialaccount %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?ver=0.7">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        
+      </div>
+      <div class="col-md-3">
+        <i class="fa fa-linkedin fa-fw"></i> /skamirul
+      </div>
+      <div class="col-md-3">
+        <i class="fas fa-paper-plane social-icon"></i> skamirul980@gmail.com 
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow mb-5 bg-body rounded">
+    <div class="container">
+      <a class="navbar-brand ft-color" href="#" style="color:#14a800;font-weight: bold;">CODING BLOG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ft-color">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item ft-color">
+            <a class="nav-link active" href="{% url 'blogs' %}" >Blogs</a>
+          </li>
+          <li class="nav-item ft-color">
+            <a class="nav-link active" href="https://www.linkedin.com/in/skamirul/" target="blank">Contact</a>
+          </li>
+        </ul>
+
+<!--         <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success ft-color" type="submit">Search</button>
+        </form> -->
+      </div>
+      <ul class="list-group list-group-flush"  >
+        <li class=" list-group-item dropdown" style = "padding: 0rem; ">
+        {% if user.is_authenticated %}
+        <a class="nav-link dropdown-toggle" style = "padding: 0rem; " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ user.get_username }}  <img src="{{user.profile.image.url}}" class="rounded-circle" style="height: 40px;width:40px" alt="profile_picture"> 
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{% url 'profile' user.id %}?next={{request.path}}">edit your profile</a></li>
+          <li><a class="dropdown-item" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+        {% else %}
+          <a class="" href="{% url 'login'%}?next={{request.path}}">Login</a> / 
+          <a class="" href="{% url 'register'%}?next={{request.path}}">Create Account</a>
+        {% endif %}
+      </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row test">
+      <div class="col-sm-2 ">
+      {% block l_sidebar %}
+
+     {% endblock %}
+      </div>
+      <div class="col-sm-8">{% block content %}{% endblock %}</div>
+      <div class="col-sm-2 ">
+        {% block r_sidebar %}
+
+        {% endblock %}
+    </div>
+    </div>
+    <footer>
+      <div class="container-fluid" style="background-color: #bfbfc7">
+        <div class="row ">
+          <div class="col-md-4 mt-3">
+            <h6><strong>Sk Amirul</strong></h6>
+             <p style="font-size:15px">
+              Having 3+ years of experience in full-stack web development,
+               I am looking for a challenging role in a reputable organization
+                to utilize my technical and management skills for the organization's 
+                growth and enhance my knowledge about new and emerging trends in the IT sector.
+             </p>
+          </div>
+          <div class="col-md-4 mt-3">
+            <h6>Quick link</h6>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ft-color">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link active" href="{% url 'blogs' %}" >Blogs</a></li>
+              <li class="nav-item"><a class="nav-link active" href="{% url 'authors' %}" >Authors</a></li>
+              <li class="nav-item"><a class="nav-link active" href="https://www.linkedin.com/in/skamirul/" target="blank">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 mt-3">
+            <h6>Social link</h6>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item"><a href="https://www.linkedin.com/in/skamirul/" target="blank">
+                <i class="fa fa-linkedin fa-fw">
+                </a></i>
+              <li class="list-group-item"><a href="https://github.com/jambotrn" target="blank">
+                <i class="fa fa-github fa-fw"></i>
+              </a></li>
+              <li class="list-group-item">            
+                <a href="https://twitter.com/skamir33758412" target="blank">
+                <i class="fa fa-twitter fa-fw"></i>
+              </a></li>
+            </ul> 
+          </div>
+    </footer>
+  <script defer src="https://kit.fontawesome.com/734b7ebc90.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+
+# rich text editor. run the command -> pip install django-ckeditor 
+# for unit test of file field install mock -> pip install mock
+# for tags -> pip install django_taggit
+# pip install django-utils-six
