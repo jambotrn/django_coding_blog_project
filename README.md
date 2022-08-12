@@ -3,7 +3,7 @@
 # Coding Blog Django web Application
 
 ##  A fully functional Coding Blog Website written in Python Django web framework, sqlite-3, HTML-5, CSS-3, Bootstrap-5.
-
+![alt text](https://github.com/jambotrn/django_coding_blog_project/blob/main/media/readme/Screenshot%202022-08-12%20at%2022-08-54%20Coding%20Blo0g.png?raw=true)
  ## Contents:
 
     1. Overview
