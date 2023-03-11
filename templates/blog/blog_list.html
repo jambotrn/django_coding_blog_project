@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+{% block title %}
+
+    <title>  </title>
+    <meta name="keywords" content=" coding, programming, seo, job interview">
+    <meta name="description" content="Readers are Leaders">
+
+{% endblock %}
+{% block content %}
+  <h2>Readers are Leaders</h2>
+  {% if blog_list %}  
+<div class="row" id="blogitem">
+  {% for blog in blog_list %}
+    {% include 'blog/blog_card.html' %}
+  {% endfor %}
+</div>
+  {% endif %}
+
+
+{% endblock %}

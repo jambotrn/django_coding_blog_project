@@ -1,0 +1,51 @@
+{% extends "base_template.html" %}
+<!-- head section -->
+{% block title %}<title>Coding Blo0g</title>
+<meta name="description" content="">
+<meta name="keywords" content="coding, programming, web development">
+{% endblock %}
+
+<!-- left sidebar-nav -->
+ {% block l_sidebar %}
+<h4>Learn </h4>
+<ul class="sidebar-nav">
+  {% for catagory in categorise %}
+  <li><a href="{{  catagory.get_absolute_url }}">{{catagory.name}} </a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+ <!-- main block -->
+{% include 'messages.html' %}
+{% block content %}
+<h2>{{ index_blog.title }}</h2>
+<a href="{{ index_blog.author.get_absolute_url }}"><h5>{{ index_blog.author }}</h5></a>
+<h>Published at : {{ index_blog.published_date }}</h5>
+<div class="content">{{ index_blog.content | safe }}</div>
+<p>
+   <strong>Tags:</strong>
+   {% for tag in index_blog.tags.all %}
+       <a href="{% url 'tagged' tag.slug %}" class="link-light text-decoration-none badge bg-secondary">
+           {{tag.name}}
+       </a>
+       <!-- {% if not forloop.last %}, {% endif %} -->
+   {% endfor %}
+</p>
+  <div class="row" id="blogitem">
+    {% for blog in blogs %}
+      {% include 'blog/blog_card.html' %}
+    {% endfor %}
+  </div>
+{% endblock %}
+
+<!-- right sidebar-nav -->
+{% block r_sidebar %}
+<h4>Enhance your skill</h4>
+<ul class="sidebar-nav">
+  {% for tag in tags %}
+  <li><a href="{% url 'tagged' tag.slug %}" class="link-light text-decoration-none badge bg-secondary">
+    {{tag.name}}
+</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

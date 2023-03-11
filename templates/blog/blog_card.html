@@ -1,0 +1,12 @@
+<div class="col-md-4 none-style-anchar">
+    <a href="{{blog.get_absolute_url }}">
+  <div class="card post-card-height">
+    <img class="card-img-top btn btn-primary" src="{% if blog.thumbnail_image %}{{ blog.thumbnail_image.url}} {% endif %}" alt="Card image">
+    <div class="card-body">
+      <h5 class="card-title">{{blog.title}}</h5>
+      <p class="card-text">{{ blog.short_description| slice:":100" }}...</p>
+      
+    </div>
+  </div>
+  </a>
+</div>

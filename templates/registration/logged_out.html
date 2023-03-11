@@ -1,0 +1,9 @@
+{% extends "base_template.html" %}
+{% block title %}<title>Coding Blo0g</title>
+<meta name="description" content="">
+<meta name="keywords" content="coding, programming, web development">
+{% endblock %}
+{% block content %}
+  <p>Logged out!</p>
+  <a href="{% url 'login'%}">Click here to login again.</a>
+{% endblock %}

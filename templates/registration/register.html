@@ -1,0 +1,79 @@
+{% extends "base_template.html" %}
+{% block content %} 
+ <!--For social login -->       
+{% load socialaccount %}
+<!--Register--> 
+<div class="container py-5">
+	{% include 'messages.html' %}
+	<h1>Register</h1>
+	<form method="POST" action="">
+		{% csrf_token %}
+    <!--username-->
+    <p class="form-p">
+    {{register_form.username.label}}&nbsp;:
+    </p>
+    {% for error in register_form.username.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    {{register_form.username}}
+    {% if register_form.username.help_text %}
+		<br> <small style="color: grey">{{ register_form.username.help_text }}</small>
+    {% endif %}
+
+    <!--email-->
+    <p class="form-p">
+    {{register_form.email.label}}&nbsp;:
+    </p>
+    {% for error in register_form.email.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    {{register_form.email}}
+    {% if register_form.email.help_text %}
+    <br> <small style="color: grey">{{ register_form.email.help_text }}</small>
+    {% endif %}
+
+    <!--password1-->
+    <p class="form-p">
+    {{register_form.password1.label}}&nbsp;:
+    </p>
+    {% for error in register_form.password1.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    {{register_form.password1}}
+    {% if register_form.password1.help_text %}
+    <br> <small style="color: grey">{{ register_form.password1.help_text }}</small>
+    {% endif %}
+
+    <!--password2-->
+    <p class="form-p">
+    {{register_form.password2.label}}&nbsp;:
+    </p>
+    {% for error in register_form.password2.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    {{register_form.password2}}
+    {% if register_form.password2.help_text %}
+    <br> <small style="color: grey">{{ register_form.password2.help_text }}</small>
+    {% endif %}
+    <br>
+		<button class="btn btn-primary" type="submit">Submit</button>
+	</form>
+  <p >If you already have an account, <a href="{% url 'login'%}?next={{request.path}}">login</a> instead.</p>
+  <p> <strong> Or login with </strong> </p>
+  <div>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item"><a href="{% provider_login_url 'google' %}" class="btn btn-danger">
+        <i class="fa fa-google fa-fw">
+        </a></i>
+      <li class="list-group-item"><a href="{% provider_login_url 'github' %}" class="btn btn-secondary">
+        <i class="fa fa-github fa-fw"></i>
+      </a></li>
+      <li class="list-group-item">            
+        <a href="{% provider_login_url 'facebook' %}" class="btn btn-primary">
+        <i class="fa fa-facebook fa-fw"></i>
+      </a></li>
+    </ul> 
+  </div>
+</div>
+
+{% endblock %}

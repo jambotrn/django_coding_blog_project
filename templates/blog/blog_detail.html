@@ -1,0 +1,42 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+
+    <title> {{ blog.title }} </title>
+    <meta name="keywords" content="{{ blog.tag }}">
+    <meta name="description" content="{{ blog.short_description|slice:':65' }}...">
+
+{% endblock %}
+{% block content %}
+ <h2>{{ blog.title }}</h2>
+ <a href="{{ blog.author.get_absolute_url }}"><h5>{{ blog.author }}</h5></a>
+ <h>Published at : {{ blog.published_date }}</h5>
+ <div class="content">{{ blog.content | safe }}</div>
+ <p>
+    <strong>Tags:</strong>
+    {% for tag in blog.tags.all %}
+        <a href="{% url 'tagged' tag.slug %}" class="link-light text-decoration-none badge bg-secondary">
+            {{tag.name}}
+        </a>
+        <!-- {% if not forloop.last %}, {% endif %} -->
+    {% endfor %}
+</p>
+<div class="row" id="blogitem">
+    {% for blog in blog_list %}
+      {% include 'blog/blog_card.html' %}
+    {% endfor %}
+  </div>
+{% include 'blog/comment_form.html' %}
+
+<div id="comments">
+    {% for comments in blog.comment_set.all %}
+    <br>
+    <img src="/media/{{comments.commenter.profile.image}}" style="height:50px; width: 50px;">
+    <p><strong>{{comments.commenter.first_name}}</strong></p>
+    <small>{{comments.comment_date}}</small>
+    <h5>{{comments.title}}</h5>
+    <p>{{comments.comment}}</p>
+    {% endfor %}
+    
+</div>
+{% endblock %}
